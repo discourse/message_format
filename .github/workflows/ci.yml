@@ -52,7 +52,7 @@ jobs:
         run: yarn install && yarn webpack
 
       - name: Release Gem
-        uses: discourse/publish-rubygems-action@v2
+        uses: discourse/publish-rubygems-action@v3
         env:
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
           GIT_EMAIL: team@discourse.org
