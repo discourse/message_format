@@ -8,11 +8,11 @@ This gem uses [`mini_racer`](https://github.com/rubyjs/mini_racer) to call the `
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add messageformat
+    $ bundle add messageformat-wrapper --require messageformat
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install messageformat
+    $ gem install messageformat-wrapper
 
 ## Usage
 
