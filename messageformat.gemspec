@@ -3,7 +3,7 @@
 require_relative "lib/messageformat/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "messageformat"
+  spec.name = "messageformat-wrapper"
   spec.version = MessageFormat::VERSION
   spec.authors = ["Loïc Guitaut"]
   spec.email = ["team@discourse.org"]
