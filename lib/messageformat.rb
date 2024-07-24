@@ -12,16 +12,17 @@ module MessageFormat
     class CompileError < StandardError
     end
 
-    attr_reader :locale, :messages, :context
+    attr_reader :locale, :messages, :context, :strict
 
-    def initialize(locale, messages)
+    def initialize(locale, messages, strict: true)
       @locale = locale
       @messages = messages
+      @strict = strict
       @context = init_context
     end
 
     def compile
-      context.call("compileMessageFormat", locale, messages)
+      context.call("compileMessageFormat", locale, messages, strict)
     rescue MiniRacer::RuntimeError => e
       raise CompileError.new(cause: e)
     end
@@ -35,8 +36,8 @@ module MessageFormat
           context.load(File.expand_path("../dist/messageformat.js", __dir__))
           context.load(File.expand_path("../dist/compilemodule.js", __dir__))
           context.eval(<<~JS)
-            function compileMessageFormat(locale, messages) {
-              const mf = new MessageFormat(locale);
+            function compileMessageFormat(locale, messages, strict) {
+              const mf = new MessageFormat(locale, { strictPluralKeys: strict });
               return compileModule(mf, messages);
             }
           JS
